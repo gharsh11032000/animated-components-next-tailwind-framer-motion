@@ -8,7 +8,17 @@ export default function SimpleHero() {
 
   return (
     <div className="overflow-x-hidden bg-gray-950 text-white">
-      <section className="h-screen w-full group relative flex items-center justify-center">
+      <motion.section
+        initial={{
+          opacity: 0
+        }}
+        animate={{
+          opacity: 1
+        }}
+        transition={{
+          duration: 1.5
+        }}
+        className="h-screen w-full group relative flex items-center justify-center">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold max-w-4xl mx-auto">
@@ -16,7 +26,7 @@ export default function SimpleHero() {
               <AnimatedWords words={words} className="w-full text-blue-400" />
             </h1>
 
-            <p className="text-lg sm:text-xl leading-8 text-gray-400 max-w-2xl mx-auto mt-4 sm:mt-8">
+            <p className="text-lg lg:text-xl leading-8 text-gray-400 max-w-2xl mx-auto mt-4 sm:mt-8">
               Elevate your online presence with cutting-edge web solutions that
               captivate, engage, and convert.
             </p>
@@ -28,7 +38,7 @@ export default function SimpleHero() {
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
     </div>
   );
 }
@@ -41,13 +51,37 @@ export interface AnimatedWordsProps {
 
 function AnimatedWords({ words, className }: AnimatedWordsProps) {
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
-  
-  useEffect(() => {
-    const interval = setInterval(() => {
+  const intervalId = useRef<NodeJS.Timeout | null>(null);
+
+  const startAnimation = () => {
+    intervalId.current = setInterval(() => {
       setCurrentWordIndex((prevIndex) => (prevIndex + 1) % words.length);
     }, 2000);
-  
-    return () => clearInterval(interval);
+  };
+
+  const stopAnimation = () => {
+    if (intervalId.current) {
+      clearInterval(intervalId.current);
+    }
+  };
+
+  useEffect(() => {
+    startAnimation();
+
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        stopAnimation();
+      } else {
+        startAnimation();
+      }
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
+    return () => {
+      stopAnimation();
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
   }, [words]);
 
   const variants = {
@@ -68,7 +102,7 @@ function AnimatedWords({ words, className }: AnimatedWordsProps) {
           animate="visible"
           exit="exit"
           transition={{
-            duration: 0.4,
+            duration: 0.25,
             type: "spring",
             damping: 12,
             stiffness: 100,
@@ -83,8 +117,8 @@ function AnimatedWords({ words, className }: AnimatedWordsProps) {
               animate="visible"
               exit="exit"
               transition={{
-                duration: 0.4,
-                delay: 0.04 * index,
+                duration: 0.25,
+                delay: 0.05 * index,
                 type: "spring",
                 damping: 12,
                 stiffness: 100,
