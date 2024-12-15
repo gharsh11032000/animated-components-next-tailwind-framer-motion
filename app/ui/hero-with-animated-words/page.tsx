@@ -52,43 +52,32 @@ export interface AnimatedWordsProps {
 
 function AnimatedWords({ words, className }: AnimatedWordsProps) {
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
-  const intervalId = useRef<NodeJS.Timeout | null>(null);
-
-  const stopAnimation = () => {
-    if (intervalId.current) {
-      clearInterval(intervalId.current);
-    }
-  };
+  const lastUpdateTime = useRef(Date.now());
+  const animationFrameId = useRef<number | null>(null);
 
   useEffect(() => {
-    const startAnimation = () => {
-      intervalId.current = setInterval(() => {
+    const animate = () => {
+      const now = Date.now();
+      if (now - lastUpdateTime.current >= 2000) {
         setCurrentWordIndex((prevIndex) => (prevIndex + 1) % words.length);
-      }, 2000);
-    };
-
-    startAnimation();
-
-    const handleVisibilityChange = () => {
-      if (document.hidden) {
-        stopAnimation();
-      } else {
-        startAnimation();
+        lastUpdateTime.current = now;
       }
+      animationFrameId.current = requestAnimationFrame(animate);
     };
 
-    document.addEventListener("visibilitychange", handleVisibilityChange);
+    animationFrameId.current = requestAnimationFrame(animate);
 
     return () => {
-      stopAnimation();
-      document.removeEventListener("visibilitychange", handleVisibilityChange);
+      if (animationFrameId.current) {
+        cancelAnimationFrame(animationFrameId.current);
+      }
     };
   }, [words]);
 
   const variants = {
-    hidden: { y: "100%" },
-    visible: { y: "0%" },
-    exit: { y: "-100%" },
+    hidden: { y: "100%", opacity: 0 },
+    visible: { y: "0%", opacity: 1 },
+    exit: { y: "-100%", opacity: 0 },
   };
 
   return (
