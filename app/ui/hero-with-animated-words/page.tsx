@@ -33,7 +33,7 @@ export default function SimpleHero() {
             </p>
 
             <div className="mt-6 sm:mt-8 flex justify-center gap-2 sm:gap-4">
-              <button className="px-4 sm:px-6 py-3 sm:py-4 flex items-center transition-all duration-300 justify-center gap-2 text-lg lg:text-xl font-semibold text-gray-900 bg-blue-400 rounded-full hover:bg-blue-300 focus:outline-none focus:bg-blue-500">
+              <button className="px-4 sm:px-6 py-3 sm:py-4 flex items-center transition-all duration-300 justify-center gap-2 lg:text-lg font-semibold text-gray-900 bg-blue-400 rounded-full hover:bg-blue-300 focus:outline-none focus:bg-blue-500">
                 Explore Services
               </button>
             </div>
