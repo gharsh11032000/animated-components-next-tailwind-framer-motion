@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
-export default function SimpleHero() {
+export default function HeroWithAnimatedWords() {
   const words = ["Innovative", "Performant", "Responsive", "User-Centric"];
 
   return (
