@@ -10,15 +10,16 @@ export default function SimpleHero() {
     <div className="overflow-x-hidden bg-gray-950 text-white">
       <motion.section
         initial={{
-          opacity: 0
+          opacity: 0,
         }}
         animate={{
-          opacity: 1
+          opacity: 1,
         }}
         transition={{
-          duration: 1.5
+          duration: 1.5,
         }}
-        className="h-screen w-full group relative flex items-center justify-center">
+        className="h-screen w-full group relative flex items-center justify-center"
+      >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold max-w-4xl mx-auto">
@@ -53,12 +54,6 @@ function AnimatedWords({ words, className }: AnimatedWordsProps) {
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const intervalId = useRef<NodeJS.Timeout | null>(null);
 
-  const startAnimation = () => {
-    intervalId.current = setInterval(() => {
-      setCurrentWordIndex((prevIndex) => (prevIndex + 1) % words.length);
-    }, 2000);
-  };
-
   const stopAnimation = () => {
     if (intervalId.current) {
       clearInterval(intervalId.current);
@@ -66,6 +61,12 @@ function AnimatedWords({ words, className }: AnimatedWordsProps) {
   };
 
   useEffect(() => {
+    const startAnimation = () => {
+      intervalId.current = setInterval(() => {
+        setCurrentWordIndex((prevIndex) => (prevIndex + 1) % words.length);
+      }, 2000);
+    };
+
     startAnimation();
 
     const handleVisibilityChange = () => {
