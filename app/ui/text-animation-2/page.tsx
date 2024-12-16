@@ -1,11 +1,13 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
-export default function TextAnimatedSection() {
+export default function Section() {
+  const words = ["Innovative", "Performant", "Responsive", "User-Centric"];
+
   return (
-    <div className="relative overflow-x-hidden dark:bg-gray-950">
+    <div className="overflow-x-hidden bg-gray-950 text-white">
       <motion.section
         initial={{
           opacity: 0,
@@ -16,34 +18,33 @@ export default function TextAnimatedSection() {
         transition={{
           duration: 1.5,
         }}
-        className="min-h-screen w-full gap-8 lg:gap-12 group p-4 md:p-8 rounded-2xl flex flex-col relative"
+        className="h-screen w-full group relative flex items-center justify-center"
       >
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 md:p-8 pb-0 md:pb-0">
-          <h1 className="text-4xl md:text-5xl lg:text-8xl font-bold text-white">
-            Building
-            <AnimatedWords
-              words={["Partnerships", "Experiences", "Relationships"]}
-              className="w-full text-blue-400"
-            />
-          </h1>
-          <div className="flex flex-col gap-4 items-start">
-            <p className="text-lg lg:text-xl !leading-normal text-gray-400 max-w-2xl">
-              We are a team of passionate individuals who are dedicated to
-              crafting digital solutions that are innovative, performant,
-              responsive, and user-centric.
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold max-w-4xl mx-auto">
+              Crafting Digital <br /> Experiences That Are
+              <AnimatedWords words={words} className="w-full text-blue-400" />
+            </h1>
+
+            <p className="text-lg lg:text-xl leading-8 text-gray-400 max-w-2xl mx-auto mt-4 sm:mt-8">
+              Elevate your online presence with cutting-edge web solutions that
+              captivate, engage, and convert.
             </p>
-            <button className="px-4 mt-2 sm:mt-4 sm:px-6 py-3 sm:py-4 flex items-center transition-all duration-300 justify-center gap-2 lg:text-lg font-semibold text-gray-900 bg-blue-400 rounded-xl lg:rounded-2xl hover:bg-blue-300 focus:outline-none focus:bg-blue-300">
-              Get Started
-            </button>
+
+            <div className="mt-6 sm:mt-8 flex justify-center gap-2 sm:gap-4">
+              <button className="px-4 sm:px-6 py-3 sm:py-4 flex items-center transition-all duration-300 justify-center gap-2 lg:text-lg font-semibold text-gray-900 bg-blue-400 rounded-full hover:bg-blue-300 focus:outline-none focus:bg-blue-500">
+                Explore Services
+              </button>
+            </div>
           </div>
         </div>
-        <div className="flex-1 relative bg-gray-800 overflow-hidden rounded-3xl w-full h-full mt-4 md:mt-0"></div>
       </motion.section>
     </div>
   );
 }
 
-interface AnimatedWordsProps {
+export interface AnimatedWordsProps {
   words: string[];
   interval?: number;
   className?: string;
@@ -74,9 +75,9 @@ function AnimatedWords({ words, className }: AnimatedWordsProps) {
   }, [words]);
 
   const variants = {
-    hidden: { y: "-100%", opacity: 0 },
+    hidden: { y: "100%", opacity: 0 },
     visible: { y: "0%", opacity: 1 },
-    exit: { y: "100%", opacity: 0 },
+    exit: { y: "-100%", opacity: 0 },
   };
 
   return (
@@ -84,7 +85,20 @@ function AnimatedWords({ words, className }: AnimatedWordsProps) {
       className={`leading-none inline-flex relative overflow-hidden ${className}`}
     >
       <AnimatePresence mode="popLayout">
-        <div key={currentWordIndex} className="w-full">
+        <motion.div
+          key={currentWordIndex}
+          variants={variants}
+          initial="hidden"
+          animate="visible"
+          exit="exit"
+          transition={{
+            duration: 0.25,
+            type: "spring",
+            damping: 12,
+            stiffness: 100,
+          }}
+          className="w-full text-center"
+        >
           {words[currentWordIndex].split("").map((letter, index) => (
             <motion.span
               key={index}
@@ -104,7 +118,7 @@ function AnimatedWords({ words, className }: AnimatedWordsProps) {
               {letter}
             </motion.span>
           ))}
-        </div>
+        </motion.div>
       </AnimatePresence>
     </div>
   );

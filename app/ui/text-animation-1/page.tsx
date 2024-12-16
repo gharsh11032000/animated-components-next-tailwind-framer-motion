@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
-export default function SimpleHero() {
+export default function Section() {
   const words = [
     "Profit",
     "Growth",
