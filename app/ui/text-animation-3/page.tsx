@@ -37,7 +37,7 @@ export default function Section() {
             </button>
           </div>
         </div>
-        <div className="flex-1 relative bg-gray-800 overflow-hidden rounded-3xl w-full h-full mt-4 md:mt-0"></div>
+        <div className="flex-1 relative bg-gray-800 overflow-hidden rounded-3xl w-full h-full"></div>
       </motion.section>
     </div>
   );

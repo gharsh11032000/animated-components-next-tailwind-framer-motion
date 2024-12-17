@@ -20,25 +20,14 @@ export default function Section() {
       >
         <div className="flex flex-col gap-6 p-2 md:p-8 pb-0 md:pb-0">
           <h1 className="text-4xl md:text-5xl lg:text-8xl font-bold text-white">
-            Elevating
             <AnimatedWords
-              words={["Brands", "Strategies", "Success"]}
+              words={["Elevate", "Innovate", "Accelerate"]}
               className="w-full text-blue-400"
             />
+            Your Business
           </h1>
-          <div className="flex flex-col gap-4 items-start">
-            <p className="text-lg lg:text-xl !leading-normal text-gray-400 max-w-2xl">
-              We are a team of creative marketers and strategists committed to
-              helping businesses grow by crafting impactful campaigns, building
-              strong brand identities, and driving measurable results.
-            </p>
-            <button className="px-4 mt-2 sm:mt-4 sm:px-6 py-3 sm:py-4 flex items-center transition-all duration-300 justify-center gap-2 lg:text-lg font-semibold text-gray-900 bg-blue-400 rounded-xl lg:rounded-2xl hover:bg-blue-300 focus:outline-none focus:bg-blue-300">
-              Contact Now
-            </button>
-          </div>
         </div>
-        <div className="grid grid-cols-1 mt-auto sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 lg:gap-6">
-          <div className="bg-gray-800 rounded-3xl w-full h-[24rem] lg:h-[32rem]"></div>
+        <div className="grid grid-cols-1 mt-auto sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-6">
           <div className="bg-gray-800 rounded-3xl w-full h-[24rem] lg:h-[32rem]"></div>
           <div className="bg-gray-800 rounded-3xl w-full h-[24rem] lg:h-[32rem]"></div>
           <div className="bg-gray-800 rounded-3xl w-full h-[24rem] lg:h-[32rem]"></div>
@@ -98,7 +87,9 @@ function AnimatedWords({ words, className }: AnimatedWordsProps) {
   };
 
   return (
-    <div className={`leading-none inline-flex relative ${className}`}>
+    <div
+      className={`leading-none inline-flex overflow-hidden relative ${className}`}
+    >
       <AnimatePresence mode="popLayout">
         <div key={currentWordIndex} className="w-full">
           {words[currentWordIndex].split("").map((letter, index) => (
