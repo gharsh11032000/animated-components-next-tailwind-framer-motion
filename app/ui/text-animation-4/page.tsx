@@ -18,35 +18,31 @@ export default function Section() {
         }}
         className="min-h-screen w-full gap-8 lg:gap-12 group p-4 md:p-8 rounded-2xl flex flex-col relative"
       >
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 md:p-8 pb-0 md:pb-0">
+        <div className="flex flex-col gap-6 p-2 md:p-8 pb-0 md:pb-0">
           <h1 className="text-4xl md:text-5xl lg:text-8xl font-bold text-white">
-            Building
+            Elevating
             <AnimatedWords
-              words={["Partnerships", "Experiences", "Relationships"]}
+              words={["Brands", "Strategies", "Success"]}
               className="w-full text-blue-400"
             />
           </h1>
           <div className="flex flex-col gap-4 items-start">
             <p className="text-lg lg:text-xl !leading-normal text-gray-400 max-w-2xl">
-              We are a team of passionate individuals who are dedicated to
-              crafting digital solutions that are innovative, performant,
-              responsive, and user-centric.
+              We are a team of creative marketers and strategists committed to
+              helping businesses grow by crafting impactful campaigns, building
+              strong brand identities, and driving measurable results.
             </p>
             <button className="px-4 mt-2 sm:mt-4 sm:px-6 py-3 sm:py-4 flex items-center transition-all duration-300 justify-center gap-2 lg:text-lg font-semibold text-gray-900 bg-blue-400 rounded-xl lg:rounded-2xl hover:bg-blue-300 focus:outline-none focus:bg-blue-300">
-              Get Started
+              Contact Now
             </button>
           </div>
         </div>
-        <div className="flex-1 relative bg-gray-950 overflow-hidden rounded-3xl w-full h-full mt-4 md:mt-0">
-          {new Array(10).fill(null).map((_, index) => (
-            <div
-              key={index}
-              className="absolute inset-0 bg-gradient-to-b from-gray-800 to-gray-950 opacity-10"
-              style={{
-                transform: `rotate(${index * 36}deg)`,
-              }}
-            ></div>
-          ))}
+        <div className="grid grid-cols-1 mt-auto sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 lg:gap-6">
+          <div className="bg-gray-800 rounded-3xl w-full h-[24rem] lg:h-[32rem]"></div>
+          <div className="bg-gray-800 rounded-3xl w-full h-[24rem] lg:h-[32rem]"></div>
+          <div className="bg-gray-800 rounded-3xl w-full h-[24rem] lg:h-[32rem]"></div>
+          <div className="bg-gray-800 rounded-3xl w-full h-[24rem] lg:h-[32rem]"></div>
+          <div className="bg-gray-800 rounded-3xl w-full h-[24rem] lg:h-[32rem]"></div>
         </div>
       </motion.section>
     </div>
@@ -86,28 +82,23 @@ function AnimatedWords({ words, className }: AnimatedWordsProps) {
   const variants = {
     hidden: {
       opacity: 0,
-      rotateX: -90,
+      rotateX: 90,
       transformOrigin: "top",
-      filter: "blur(4px)",
     },
     visible: {
       opacity: 1,
       rotateX: 0,
       transformOrigin: "top",
-      filter: "blur(0px)",
     },
     exit: {
       opacity: 0,
-      rotateX: 90,
+      rotateX: -90,
       transformOrigin: "bottom",
-      filter: "blur(4px)",
     },
   };
 
   return (
-    <div
-      className={`leading-none inline-flex relative overflow-hidden ${className}`}
-    >
+    <div className={`leading-none inline-flex relative ${className}`}>
       <AnimatePresence mode="popLayout">
         <div key={currentWordIndex} className="w-full">
           {words[currentWordIndex].split("").map((letter, index) => (
