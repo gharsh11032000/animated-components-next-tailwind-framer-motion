@@ -19,7 +19,7 @@ export default function Section() {
         }}
         className="min-h-screen w-full gap-8 grid lg:gap-8 group rounded-2xl relative"
       >
-        <div className="flex flex-col gap-6 overflow-hidden backdrop-blur-3xl relative text-center justify-center items-center">
+        <div className="flex flex-col gap-4 lg:gap-6 overflow-hidden backdrop-blur-3xl relative text-center justify-center items-center">
           <motion.div
             animate={{
               opacity: [0.8, 1],
@@ -40,7 +40,7 @@ export default function Section() {
           <h1 className="text-5xl md:text-7xl leading-snug w-full lg:text-9xl font-bold text-white">
             <AnimatedWords
               words={["Clone yourself.", "Clone yourself.", "Clone yourself."]}
-              className=" text-blue-400 w-full leading-snug"
+              className=" text-gray-100 w-full leading-snug"
             />
           </h1>
           <div className="flex flex-col gap-4 items-center px-5 justify-center">
@@ -55,13 +55,12 @@ export default function Section() {
 
               <Link
                 href="/#"
-                className="text-blue-400 font-semibold lg:text-xl hover:underline"
+                className="text-gray-300 font-semibold flex items-center gap-2 lg:text-xl hover:underline"
               >
-                See Examples
+                See Examples <span>&rarr;</span>
               </Link>
             </div>
           </div>
-          =
         </div>
       </motion.section>
     </div>
