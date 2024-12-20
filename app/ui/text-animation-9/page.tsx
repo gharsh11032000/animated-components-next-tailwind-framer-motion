@@ -41,13 +41,26 @@ function AnimatedWords({ words, className }: AnimatedWordsProps) {
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [width, setWidth] = useState(0);
   const wordRef = useRef<HTMLSpanElement>(null);
+  const lastUpdateTime = useRef(Date.now());
+  const animationFrameId = useRef<number | null>(null);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentWordIndex((prevIndex) => (prevIndex + 1) % words.length);
-    }, 2000);
+    const animate = () => {
+      const now = Date.now();
+      if (now - lastUpdateTime.current >= 3000) {
+        setCurrentWordIndex((prevIndex) => (prevIndex + 1) % words.length);
+        lastUpdateTime.current = now;
+      }
+      animationFrameId.current = requestAnimationFrame(animate);
+    };
 
-    return () => clearInterval(timer);
+    animationFrameId.current = requestAnimationFrame(animate);
+
+    return () => {
+      if (animationFrameId.current) {
+        cancelAnimationFrame(animationFrameId.current);
+      }
+    };
   }, [words]);
 
   useEffect(() => {
@@ -56,8 +69,10 @@ function AnimatedWords({ words, className }: AnimatedWordsProps) {
     }
   }, [currentWordIndex, words]);
 
+  const colors = ["bg-blue-400", "bg-green-400", "bg-pink-400"];
+
   return (
-    <div className={`inline-flex  relative ${className}`}>
+    <div className={`inline-flex relative ${className}`} style={{ perspective: "1000px" }}>
       <AnimatePresence mode="popLayout">
         <motion.div
           key={currentWordIndex}
@@ -69,18 +84,25 @@ function AnimatedWords({ words, className }: AnimatedWordsProps) {
           <motion.span
             ref={wordRef}
             initial={{
-              filter: "blur(30px)",
+              filter: "blur(12px)",
               opacity: 0,
               rotateX: 90,
               skewX: -45,
+              scale: 0.8,
             }}
-            animate={{ filter: "blur(0px)", opacity: 1, rotateX: 0, skewX: 0 }}
+            animate={{
+              filter: "blur(0px)",
+              opacity: 1,
+              rotateX: 0,
+              skewX: 0,
+              scale: 1,
+            }}
             exit={{
-              filter: "blur(30px)",
+              filter: "blur(12px)",
               opacity: 0,
               rotateX: -90,
               skewX: 45,
-
+              scale: 0.8,
               transition: {
                 duration: 0.5,
                 type: "spring",
@@ -94,7 +116,7 @@ function AnimatedWords({ words, className }: AnimatedWordsProps) {
               damping: 12,
               stiffness: 100,
             }}
-            className="inline-flex items-center justify-center h-full py-2 md:py-4 px-4 md:px-8 bg-blue-400 rounded-xl md:rounded-3xl"
+            className={`inline-flex items-center justify-center h-full py-2 md:py-4 px-4 md:px-8 rounded-xl md:rounded-3xl ${colors[currentWordIndex % colors.length]}`}
           >
             {words[currentWordIndex]}
           </motion.span>
