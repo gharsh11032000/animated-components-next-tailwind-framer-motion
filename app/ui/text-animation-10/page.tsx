@@ -38,36 +38,36 @@ export default function Section() {
         ></motion.div>
 
         <div className="text-6xl overflow-hidden uppercase h-[1em] !leading-none font-black w-full lg:text-8xl text-white">
-          <AnimatedWords words={"rolling"} />
+          <AnimatedWord word={"rolling"} />
         </div>
       </motion.section>
     </div>
   );
 }
 
-interface AnimatedWordsProps {
-  words: string;
+interface AnimatedWordProps {
+  word: string;
   interval?: number;
   className?: string;
 }
 
-function AnimatedWords({ words, className }: AnimatedWordsProps) {
+function AnimatedWord({ word, className }: AnimatedWordProps) {
   const MAX = 8;
   const MIN = 6;
   const [randomValues, setRandomValues] = useState<number[]>([]);
 
   useEffect(() => {
-    const values = words
+    const values = word
       .split("")
       .map(() => Math.floor(Math.random() * (MAX - MIN + 1) + MIN));
     setRandomValues(values);
-  }, [words]);
+  }, [word]);
 
   return (
     <div className={`inline-flex relative ${className}`}>
       {randomValues.length > 0 && (
         <>
-          {words.split("").map((word, index) => {
+          {word.split("").map((letter, index) => {
             const random = randomValues[index];
 
             return (
@@ -93,9 +93,9 @@ function AnimatedWords({ words, className }: AnimatedWordsProps) {
               >
                 {new Array(random).fill(0).map((_, i) => (
                   <div key={i} className="inline-block">
-                    {word}
+                    {letter}
 
-                    {word === " " && (
+                    {letter === " " && (
                       <span className="invisible whitespace-pre">_</span>
                     )}
                   </div>
