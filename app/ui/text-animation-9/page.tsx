@@ -33,7 +33,6 @@ export default function Section() {
 
 interface AnimatedWordsProps {
   words: string[];
-  interval?: number;
   className?: string;
 }
 
@@ -72,7 +71,10 @@ function AnimatedWords({ words, className }: AnimatedWordsProps) {
   const colors = ["bg-blue-400", "bg-green-400", "bg-pink-400"];
 
   return (
-    <div className={`inline-flex relative ${className}`} style={{ perspective: "1000px" }}>
+    <div
+      className={`inline-flex relative ${className}`}
+      style={{ perspective: "1000px" }}
+    >
       <AnimatePresence mode="popLayout">
         <motion.div
           key={currentWordIndex}
@@ -116,7 +118,9 @@ function AnimatedWords({ words, className }: AnimatedWordsProps) {
               damping: 12,
               stiffness: 100,
             }}
-            className={`inline-flex items-center justify-center h-full py-2 md:py-4 px-4 md:px-8 rounded-xl md:rounded-3xl ${colors[currentWordIndex % colors.length]}`}
+            className={`inline-flex items-center justify-center h-full py-2 md:py-4 px-4 md:px-8 rounded-xl md:rounded-3xl ${
+              colors[currentWordIndex % colors.length]
+            }`}
           >
             {words[currentWordIndex]}
           </motion.span>

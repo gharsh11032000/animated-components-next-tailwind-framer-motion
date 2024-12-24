@@ -51,7 +51,6 @@ export default function Section() {
 
 export interface AnimatedWordsProps {
   words: string[];
-  interval?: number;
   className?: string;
 }
 
