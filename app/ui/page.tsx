@@ -57,4 +57,28 @@ const components = [
     name: "Text Animation 9",
     href: "/text-animation-9",
   },
+  {
+    name: "Text Animation 10",
+    href: "/text-animation-10",
+  },
+  {
+    name: "Text Animation 11",
+    href: "/text-animation-11",
+  },
+  {
+    name: "Text Animation 12",
+    href: "/text-animation-12",
+  },
+  {
+    name: "Text Animation 13",
+    href: "/text-animation-13",
+  },
+  {
+    name: "Text Animation 14",
+    href: "/text-animation-14",
+  },
+  {
+    name: "Text Animation 15",
+    href: "/text-animation-15",
+  },
 ];

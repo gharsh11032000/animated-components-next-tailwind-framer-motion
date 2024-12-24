@@ -37,12 +37,12 @@ export default function Section() {
           className="absolute w-96 h-96 bg-gradient-to-r from-gray-400 to-gray-300 rounded-full blur-3xl opacity-100"
         ></motion.div>
 
-        <div className="font-bold w-full text-5xl md:text-6xl lg:text-8xl text-gray-100">
+        <div className="font-bold w-full text-7xl lg:text-9xl  text-gray-100">
           <AnimatedWord word={"Gravity"} className="w-full" />
         </div>
 
-        <div className="m-4 text-xl text-gray-300 text-center">
-          <p>The process of lighting up a space.</p>
+        <div className="m-4 text-xl text-gray-300 max-w-2xl text-center">
+          <p>Keeps us grounded, keeps us together</p>
         </div>
       </motion.section>
     </div>
@@ -56,7 +56,13 @@ interface AnimatedWordProps {
 }
 
 function AnimatedWord({ word, className }: AnimatedWordProps) {
-  const colors = ["text-red-500", "text-green-500", "text-blue-500", "text-pink-500", "text-white"];
+  const colors = [
+    "text-red-500",
+    "text-green-500",
+    "text-blue-500",
+    "text-pink-500",
+    "text-white",
+  ];
 
   return (
     <div
@@ -69,48 +75,45 @@ function AnimatedWord({ word, className }: AnimatedWordProps) {
         {word}
       </span>
 
-      {
-        new Array(5).fill(word).map((_, parentIndex) => {
-          return (
-            <motion.div
-              style={{
-                transformStyle: "preserve-3d",
-              }}
-              className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 flex"
-              key={parentIndex}
-            >
-
-              {word.split("").map((letter, index) => {
-                const delay = index * 0.075 + parentIndex * 0.075;
-                return (
-                  <motion.div
-                    style={{
-                      transformStyle: "preserve-3d",
-                    }}
-                    className={colors[parentIndex % colors.length]}
-                    initial={{
-                      opacity: 0,
-                      z: 360,
-                    }}
-                    animate={{
-                      opacity: 1,
-                      z: 0,
-                    }}
-                    transition={{
-                      delay,
-                      duration: 0.5,
-                      ease: "easeOut",
-                    }}
-                    key={index}
-                  >
-                    {letter}
-                  </motion.div>
-                );
-              })}
-            </motion.div>
-          );
-        })
-      }
+      {new Array(5).fill(word).map((_, parentIndex) => {
+        return (
+          <motion.div
+            style={{
+              transformStyle: "preserve-3d",
+            }}
+            className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 flex"
+            key={parentIndex}
+          >
+            {word.split("").map((letter, index) => {
+              const delay = index * 0.075 + parentIndex * 0.075;
+              return (
+                <motion.div
+                  style={{
+                    transformStyle: "preserve-3d",
+                  }}
+                  className={colors[parentIndex % colors.length]}
+                  initial={{
+                    opacity: 0,
+                    z: 360,
+                  }}
+                  animate={{
+                    opacity: 1,
+                    z: 0,
+                  }}
+                  transition={{
+                    delay,
+                    duration: 0.5,
+                    ease: "easeOut",
+                  }}
+                  key={index}
+                >
+                  {letter}
+                </motion.div>
+              );
+            })}
+          </motion.div>
+        );
+      })}
     </div>
   );
 }
