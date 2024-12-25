@@ -30,7 +30,7 @@ export default function Section() {
         }}
         className="min-h-screen w-full flex justify-center items-center relative overflow-hidden"
       >
-        <div className="font-semibold border-gray-100/20 text-4xl w-full max-w-2xl lg:text-6xl  text-gray-100">
+        <div className="font-semibold text-4xl w-full max-w-2xl lg:text-6xl text-gray-100">
           <AnimatedWords words={words} className="w-full" />
         </div>
       </motion.section>
