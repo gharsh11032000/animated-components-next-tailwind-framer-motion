@@ -40,7 +40,7 @@ export default function Section() {
 
           <h1 className="text-5xl md:text-7xl leading-snug w-full lg:text-9xl font-bold text-white">
             <AnimatedWords
-              words={["Animate Now.", "Animate Now.", "Animate Now."]}
+              words={["Animate Now!", "Animate Now!", "Animate Now!"]}
               className=" text-gray-100 w-full"
             />
           </h1>
@@ -107,8 +107,9 @@ function AnimatedWords({ words, className }: AnimatedWordsProps) {
                     transformOrigin: "top",
 
                     transition: {
-                      duration: 0.2,
-                      delay: 0.025 * index,
+                      duration: 0.3,
+                      delay: 0.02 * index,
+                      ease: "easeOut",
                     },
                   },
                 }}
@@ -118,6 +119,7 @@ function AnimatedWords({ words, className }: AnimatedWordsProps) {
                 transition={{
                   duration: 0.5,
                   delay: 0.03 * index,
+                  ease: "easeOut",
                 }}
                 className="inline-block"
               >
