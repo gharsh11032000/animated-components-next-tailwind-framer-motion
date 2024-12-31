@@ -88,7 +88,7 @@ function AnimatedWord({
             fontWeight: getFontWeight(index),
             textShadow: getTextShadow(index),
             color: getColor(index),
-            transition: "all 0.2s", // Increased transition duration for smoother animation
+            transition: "all 0.2s",
           }}
         >
           {char}
