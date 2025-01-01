@@ -13,8 +13,8 @@ export default function Section() {
         className="min-h-screen flex flex-col justify-center relative overflow-hidden"
       >
         <FadeWaveText
-          text="Contact Now"
-          className="text-4xl relative sm:text-4xl md:text-5xl lg:text-6xl text-blue-100"
+          text="Store Open 24/7"
+          className="text-4xl relative rounded-3xl sm:text-4xl font-bold uppercase bg-gray-950 border-4 w-min mx-auto px-8 py-8 md:px-12 md:py-12 md:text-5xl lg:text-6xl text-gray-100 border-gray-100"
         />
       </motion.section>
     </div>
@@ -49,15 +49,20 @@ function FadeWaveText({
 
   const getTextShadow = (index: number) => {
     const distance = Math.abs(currentIndex - index);
-    if (distance === 0) return "0 0 10px rgba(255, 255, 255, 0.8)";
-    if (distance === 1) return "0 0 8px rgba(255, 255, 255, 0.6)";
-    if (distance === 2) return "0 0 5px rgba(255, 255, 255, 0.2)";
+    if (distance === 0) return "0 0 10px rgba(255, 255, 255, 1)";
+    if (distance === 1) return "0 0 8px rgba(255, 255, 255, 0.7)";
+    if (distance === 2) return "0 0 5px rgba(255, 255, 255, 0.4)";
     return "none";
   };
 
   return (
-    <div className={`flex flex-col items-center ${className}`}>
-      <div className="flex items-center">
+    <div
+      style={{
+        boxShadow: "0 0 12px rgba(255, 255, 255, 0.8)",
+      }}
+      className={`flex flex-col items-center justify-center ${className}`}
+    >
+      <div>
         {text.split("").map((char, index) => (
           <span
             key={index}
@@ -68,7 +73,6 @@ function FadeWaveText({
             }}
           >
             {char}
-            {char === " " ? <>&nbsp;</> : null}
           </span>
         ))}
       </div>
