@@ -14,7 +14,7 @@ export default function Section() {
       >
         <FadeWaveText
           text="Store Open 24/7"
-          className="text-4xl relative rounded-3xl sm:text-4xl font-bold uppercase bg-gray-950 border-4 w-min mx-auto px-8 py-8 md:px-12 md:py-12 md:text-5xl lg:text-6xl text-gray-100 border-gray-100"
+          className="text-4xl relative rounded-3xl sm:text-4xl font-bold uppercase bg-gray-950 border-4 w-min mx-auto px-8 py-8 md:px-12 md:py-12 md:text-5xl lg:text-6xl text-gray-100 border-gray-100/20"
         />
       </motion.section>
     </div>
@@ -56,19 +56,14 @@ function FadeWaveText({
   };
 
   return (
-    <div
-      style={{
-        boxShadow: "0 0 12px rgba(255, 255, 255, 0.8)",
-      }}
-      className={`flex flex-col items-center justify-center ${className}`}
-    >
+    <div className={`flex flex-col items-center justify-center ${className}`}>
       <div>
         {text.split("").map((char, index) => (
           <span
             key={index}
             style={{
               opacity: getOpacity(index),
-              transition: "all 0.25s ease-out",
+              transition: "all 0.15s ease-out",
               textShadow: getTextShadow(index),
             }}
           >
