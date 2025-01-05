@@ -40,7 +40,6 @@ function AnimatedWord({
     word.split("").map(() => "")
   );
   const [isAnimating, setIsAnimating] = useState(true);
-  const [colors, setColors] = useState<string[]>([]);
 
   const animateWord = useCallback(() => {
     setIsAnimating(true);
@@ -54,22 +53,17 @@ function AnimatedWord({
           return randomChar;
         })
       );
-      setColors((prev) =>
-        prev.map(() => `hsl(${Math.floor(Math.random() * 360)}, 100%, 50%)`)
-      );
-    }, 75);
+    }, 25);
 
     setTimeout(() => {
       clearInterval(interval);
       setDisplayedWord(word.split(""));
-      setColors(word.split("").map(() => "hsl(0, 0%, 100%)"));
       setIsAnimating(false);
     }, 1000);
   }, [word]);
 
   const resetWord = useCallback(() => {
     setDisplayedWord(word.split("").map(() => ""));
-    setColors(word.split("").map(() => "hsl(0, 0%, 100%)"));
     animateWord();
   }, [word, animateWord]);
 
@@ -82,9 +76,7 @@ function AnimatedWord({
   return (
     <div className={`flex items-center ${className}`}>
       {displayedWord.map((char, index) => (
-        <span key={index} style={{ color: colors[index] }}>
-          {char}
-        </span>
+        <span key={index}>{char}</span>
       ))}
     </div>
   );

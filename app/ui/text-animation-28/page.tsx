@@ -32,9 +32,8 @@ export default function Section() {
           }}
           style={{
             left: "calc(50% - 12rem)",
-            top: "calc(50% - 12rem)",
           }}
-          className="absolute z-0 w-96 h-96 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full blur-[8rem] opacity-100"
+          className="absolute z-0 -top-1/4 w-96 h-96 bg-gradient-to-r from-purple-500 to-purple-400 rounded-full blur-[8rem] opacity-100"
         ></motion.div>
 
         <div className="relative container grid place-content-center mx-auto px-4 sm:px-6 lg:px-8">
@@ -60,12 +59,12 @@ function AnimatedWord({
       {words.split("").map((char, index) => (
         <span key={index}>
           <motion.span
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            initial={{ opacity: 0, filter: "blur(0.5em)" }}
+            animate={{ opacity: 1, filter: "blur(0)" }}
             transition={{
-              duration: 0.75,
+              duration: 0.5,
               delay: Math.random(),
-              ease: "easeOut",
+              ease: [0.17, 0.67, 0.83, 0.67],
             }}
           >
             {char}
