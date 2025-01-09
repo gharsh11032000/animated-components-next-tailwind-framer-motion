@@ -4,10 +4,28 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 export default function Section() {
-  const gridBoxes = Array.from({ length: 60 }, (_, i) => i);
+  const [gridBoxes, setGridBoxes] = useState<number[]>([]);
+  const [gridTemplate, setGridTemplate] = useState({ cols: 10, rows: 6 });
+
+  useEffect(() => {
+    const updateGridBoxes = () => {
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      const size = Math.min(width, height) / 10; // Adjust the divisor to control the size of the squares
+      const cols = Math.ceil(width / size);
+      const rows = Math.ceil(height / size);
+      setGridTemplate({ cols, rows });
+      setGridBoxes(Array.from({ length: cols * rows }, (_, i) => i));
+    };
+
+    updateGridBoxes();
+    window.addEventListener("resize", updateGridBoxes);
+
+    return () => window.removeEventListener("resize", updateGridBoxes);
+  }, []);
 
   return (
-    <div className="relative overflow-x-hidden dark:bg-gray-950">
+    <div className="relative overflow-x-hidden dark:bg-gray-950 text-4xl md:text-5xl lg:text-9xl">
       <motion.section
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -27,22 +45,28 @@ export default function Section() {
             repeatType: "reverse",
           }}
           style={{
-            left: "calc(50% - 12rem)",
-            top: "calc(50% - 12rem)",
+            left: "calc(50% - 1em)",
+            top: "calc(50% - 1em)",
           }}
-          className="absolute z-0 w-96 h-96 bg-blue-400 rounded-full blur-[8rem] opacity-100"
+          className="absolute z-0 w-[2em] h-[2em] bg-blue-400 rounded-full blur-[1em] opacity-100"
         ></motion.div>
 
-        <div className="relative z-10 text-4xl h-screen grid place-content-center w-screen md:text-5xl lg:text-9xl font-bold text-white">
+        <div className="relative z-10  h-screen grid place-content-center w-screen  font-bold text-white">
           Pixelated World.
         </div>
       </motion.section>
 
-      <div className="absolute inset-0 grid grid-cols-10 grid-rows-6 z-50">
+      <div
+        className="absolute inset-0 grid z-50"
+        style={{
+          gridTemplateColumns: `repeat(${gridTemplate.cols}, 1fr)`,
+          gridTemplateRows: `repeat(${gridTemplate.rows}, 1fr)`,
+        }}
+      >
         {gridBoxes.map((box) => (
           <motion.div
             key={box}
-            className="w-full h-full bg-blue-400"
+            className="w-full h-full bg-gray-800"
             initial={{ opacity: 1, visibility: "visible" }}
             animate={{ opacity: 0, visibility: "hidden" }}
             transition={{
