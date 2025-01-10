@@ -4,7 +4,7 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import { motion, useAnimate, useAnimation } from "framer-motion";
 import { Unbounded } from "next/font/google";
 
-const unboundred = Unbounded({
+const unbounded = Unbounded({
   weight: ["400", "700"],
   subsets: ["latin"],
 });
@@ -12,7 +12,7 @@ const unboundred = Unbounded({
 export default function Section() {
   return (
     <div
-      className={`relative overflow-x-hidden dark:bg-gray-950 ${unboundred.className}`}
+      className={`relative overflow-x-hidden dark:bg-gray-950 ${unbounded.className}`}
     >
       <motion.section
         initial={{
@@ -53,7 +53,6 @@ function AnimatedWord({
         {
           "--lighter-deg": "24deg",
           opacity: 1,
-          scale: 1,
         },
         { duration: 1.25, ease: "easeOut" }
       );
@@ -75,7 +74,7 @@ function AnimatedWord({
           <div className="absolute bottom-[-16rem] overflow-hidden w-96 h-[40rem] right-[calc(24rem/2)]">
             <span
               style={{
-                background: `conic-gradient(from 0deg at 50% 50%, black 0deg, rgba(86, 86, 86, 0) calc(127.363deg - var(--lighter-deg)), rgba(47, 47, 47, 0) calc(231.791deg - var(--lighter-deg)), #aaa calc(358.9deg - var(--lighter-deg)), #f8f8f8 calc(359.6deg - var(--dis-deg)), #f8f8f8 calc(359.8deg - var(--dis-deg)), #f8f8f8 calc(359.9deg - var(--dis-deg)), black)`,
+                background: `conic-gradient(from 0deg at 50% 50%, black 0deg, rgba(86, 86, 86, 0) calc(127.363deg - var(--lighter-deg)), rgba(47, 47, 47, 0) calc(231.791deg - var(--lighter-deg)), #aaa calc(358.9deg - var(--lighter-deg)), #f8f8f8 calc(359.6deg - 0deg), #f8f8f8 calc(359.8deg - 0deg), #f8f8f8 calc(359.9deg - 0deg), black)`,
               }}
               className="absolute top-12 w-full h-full mix-blend-color-dodge left-12 rotate-90"
             ></span>
@@ -84,7 +83,7 @@ function AnimatedWord({
           <div className="absolute bottom-[-16rem] overflow-hidden w-96 h-[40rem] left-[calc(24rem/2)]">
             <span
               style={{
-                backgroundImage: `conic-gradient(from 0deg at 50% 50%, black 0deg, rgba(86, 86, 86, 0) calc(127.363deg - var(--lighter-deg)), rgba(47, 47, 47, 0) calc(231.791deg - var(--lighter-deg)), #aaa calc(358.9deg - var(--lighter-deg)), #f8f8f8 calc(359.6deg - var(--dis-deg)), #f8f8f8 calc(359.8deg - var(--dis-deg)), #f8f8f8 calc(359.9deg - var(--dis-deg)), black)`,
+                backgroundImage: `conic-gradient(from 0deg at 50% 50%, black 0deg, rgba(86, 86, 86, 0) calc(127.363deg - var(--lighter-deg)), rgba(47, 47, 47, 0) calc(231.791deg - var(--lighter-deg)), #aaa calc(358.9deg - var(--lighter-deg)), #f8f8f8 calc(359.6deg - 0deg), #f8f8f8 calc(359.8deg - 0deg), #f8f8f8 calc(359.9deg - 0deg), black)`,
                 transform: `rotate(-90deg) rotateY(180deg)`,
               }}
               className="absolute top-12 w-full h-full mix-blend-color-dodge right-12"
