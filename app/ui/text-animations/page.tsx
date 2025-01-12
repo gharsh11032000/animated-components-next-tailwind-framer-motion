@@ -6,7 +6,7 @@ export default function TextAnimaionsPage() {
   return (
     <div className="bg-gray-950 min-h-screen">
       <div className="grid grid-cols-2 p-8 container mx-auto gap-8">
-        {new Array(32).fill(0).map((_, index) => (
+        {new Array(38).fill(0).map((_, index) => (
           <Link
             key={index}
             href={`/ui/text-animations/text-animation-${index + 1}`}
