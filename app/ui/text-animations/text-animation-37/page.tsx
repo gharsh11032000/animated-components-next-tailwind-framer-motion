@@ -2,15 +2,17 @@
 
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { Space_Mono } from "next/font/google";
+
+const space_mono = Space_Mono({
+  weight: ["400", "700"],
+  subsets: ["latin"],
+});
 
 export default function Section() {
-  const words = [
-    "Science helps us understand the world. ",
-    "It explains how things work. ",
-    "From tiny atoms to vast galaxies, ",
-    "science reveals the secrets of nature. ",
-    "Let's explore and discover together.",
-  ];
+  const text = "Build Beautiful Interfaces with Tailwind CSS.";
+
+  const words = text.split(" ");
 
   return (
     <motion.div
@@ -23,7 +25,7 @@ export default function Section() {
       transition={{
         duration: 1.5,
       }}
-      className="font-mono overflow-hidden relative dark:bg-gray-950 text-gray-100"
+      className={`overflow-hidden relative dark:bg-gray-950 text-gray-100 ${space_mono.className}`}
     >
       <motion.div
         initial={{
@@ -46,7 +48,7 @@ export default function Section() {
         className="absolute z-0 -bottom-1/4 w-96 h-96 bg-gradient-to-r from-purple-600 to-purple-400 rounded-full blur-[8rem] opacity-100"
       ></motion.div>
 
-      <div className="h-screen flex sticky top-0 px-5 max-w-xl mx-auto items-center justify-center">
+      <div className="h-screen flex sticky top-0 px-5 max-w-5xl mx-auto items-center justify-center">
         <AnimatedSection words={words} />
       </div>
     </motion.div>
@@ -59,24 +61,25 @@ const AnimatedSection = ({ words }: { words: string[] }) => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentWordIndex((prevIndex) => (prevIndex + 1) % words.length);
-    }, 1000);
+    }, 500);
 
     return () => clearInterval(interval);
   }, [words.length]);
 
   return (
     <div className="flex flex-col gap-8">
-      <p className="max-w-screen-lg md:text-3xl">
+      <p className="max-w-sm lg:max-w-screen-lg text-4xl lg:text-8xl">
         {words.map((word, index) => (
           <motion.span
             key={index}
-            initial={{ opacity: 0.2 }}
+            initial={{ opacity: 0.2, fontWeight: "400" }}
             className="inline overflow-hidden"
             animate={{
               opacity: index === currentWordIndex ? 1 : 0.2,
+              fontWeight: index === currentWordIndex ? "700" : "400",
             }}
           >
-            {word}
+            {word}{" "}
           </motion.span>
         ))}
       </p>
