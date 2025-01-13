@@ -61,7 +61,7 @@ function AnimatedWords({
             delay: index * 0.25,
             ease: "easeOut",
           }}
-          className="mb-[0.25em] relative flex items-center"
+          className="mb-[0.05em] relative flex items-center"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
