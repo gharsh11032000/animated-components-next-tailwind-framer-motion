@@ -11,7 +11,7 @@ export default function Section() {
     const updateGridBoxes = () => {
       const width = window.innerWidth;
       const height = window.innerHeight;
-      const size = Math.min(width, height) / 10; // Adjust the divisor to control the size of the squares
+      const size = Math.min(width, height) / 10;
       const cols = Math.ceil(width / size);
       const rows = Math.ceil(height / size);
       setGridTemplate({ cols, rows });
@@ -53,7 +53,7 @@ export default function Section() {
             transition={{
               duration: 0.5,
               delay: Math.random() * 0.5,
-              ease: "circInOut",
+              ease: "circOut",
             }}
           />
         ))}
