@@ -18,9 +18,27 @@ export default function Section() {
         transition={{
           duration: 1.5,
         }}
-        className="h-screen w-full group relative flex items-center justify-center"
+        className="h-screen w-full group relative overflow-hidden flex items-center justify-center"
       >
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div
+          animate={{
+            opacity: [0.8, 1],
+            scale: [1.8, 2],
+            rotate: [0, 360, 0],
+          }}
+          transition={{
+            duration: 4,
+            ease: "easeInOut",
+            repeat: Infinity,
+            repeatType: "reverse",
+          }}
+          style={{
+            left: "calc(50% - 12rem)",
+          }}
+          className="absolute top-0 w-96 h-96 bg-gradient-to-r from-blue-400 to-teal-500 rounded-full blur-[8rem] opacity-100"
+        ></motion.div>
+
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold max-w-4xl mx-auto">
               Crafting Digital <br /> Experiences That Are

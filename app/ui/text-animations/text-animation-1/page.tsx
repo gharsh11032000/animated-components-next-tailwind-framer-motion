@@ -14,7 +14,7 @@ export default function Section() {
   ];
 
   return (
-    <div className="relative overflow-x-hidden dark:bg-gray-950">
+    <div className="relative  overflow-x-hidden dark:bg-gray-950">
       <motion.section
         initial={{
           opacity: 0,
@@ -25,16 +25,30 @@ export default function Section() {
         transition={{
           duration: 1.5,
         }}
-        className="min-h-screen relative"
+        className="min-h-screen relative overflow-hidden grid place-content-center"
       >
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-white">
-            Transforming Ideas <br /> Into{" "}
-            <AnimatedWords words={words} className="text-blue-400" />
-          </h1>
+        <motion.div
+          animate={{
+            opacity: [0.8, 1],
+            scale: [1.8, 2],
+            rotate: [0, 360, 0],
+          }}
+          transition={{
+            duration: 4,
+            ease: "easeInOut",
+            repeat: Infinity,
+            repeatType: "reverse",
+          }}
+          style={{
+            left: "calc(50% - 12rem)",
+          }}
+          className="absolute bottom-0 w-96 h-96 bg-gradient-to-r from-green-400 to-teal-500 rounded-full blur-[8rem] opacity-100"
+        ></motion.div>
 
-          <div className="relative bg-gray-800 overflow-hidden rounded-3xl w-full h-[35rem] lg:h-[40rem] mt-8 md:mt-12"></div>
-        </div>
+        <h1 className="text-4xl md:text-5xl lg:text-7xl relative z-10 font-bold text-white">
+          Transforming Ideas <br /> Into{" "}
+          <AnimatedWords words={words} className="text-green-400" />
+        </h1>
       </motion.section>
     </div>
   );
