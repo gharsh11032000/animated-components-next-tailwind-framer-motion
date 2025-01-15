@@ -1,8 +1,8 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Figtree } from "next/font/google";
+import { Space_Mono } from "next/font/google";
 
-const figtree = Figtree({ subsets: ["latin"] });
+const spacemono = Space_Mono({ subsets: ["latin"], weight: ["400"] });
 
 export const metadata: Metadata = {
   title: "Animated Components Next + Tailwind + Framer Motion",
@@ -16,7 +16,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="dark">
-      <body className={figtree.className}>{children}</body>
+      <body className={spacemono.className}>{children}</body>
     </html>
   );
 }
